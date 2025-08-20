@@ -16,6 +16,7 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.Scroller;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.popover.Popover;
 import com.vaadin.flow.component.popover.PopoverPosition;
 import com.vaadin.flow.component.popover.PopoverVariant;
@@ -28,6 +29,7 @@ public class MainLayout extends AppLayout {
     MainLayout(){
         createDrawer();
         //createIconAvatarLink();
+        //createHeaders();
 
     }
 
@@ -36,11 +38,11 @@ public class MainLayout extends AppLayout {
 
         SideNav nav = new SideNav();
 
-        //SideNavItem homeLink = new SideNavItem("Home", new RouterLink(HomeView.class), VaadinIcon.HOME.create());
-        // SideNavItem profileLink = new SideNavItem("Profile", ProfileView.class, VaadinIcon.MALE.create());
-        // SideNavItem recordLink = new SideNavItem("Records", RecordView.class, VaadinIcon.RECORDS.create());
+        SideNavItem homeLink = new SideNavItem("Home", HomeView.class, VaadinIcon.HOME.create());
+         SideNavItem profileLink = new SideNavItem("Profile", ProfileView.class, VaadinIcon.MALE.create());
+         SideNavItem recordLink = new SideNavItem("Records", RecordView.class, VaadinIcon.RECORDS.create());
 
-        //nav.addItem(homeLink, recordLink, profileLink);
+        nav.addItem(homeLink, recordLink, profileLink);
 
         H1 logo = new H1("Registrar App"); 
         logo.addClassNames("text-l", "m-m");
@@ -58,9 +60,18 @@ public class MainLayout extends AppLayout {
     }
 
 
-    private SideNav getSideNav(){
-        SideNav nav  = new SideNav();
-        return nav;
+    private void createHeaders(){
+        RouterLink homeLink = new RouterLink("Home", HomeView.class);
+        RouterLink recordsLink = new RouterLink("Records", RecordView.class);
+        RouterLink profileLink = new RouterLink("Profile", ProfileView.class);
+
+        addToDrawer(new VerticalLayout(
+            homeLink,
+            recordsLink,
+            profileLink
+        ));
+
+
     }
 
     private Component createIconAvatarLink(){
