@@ -54,11 +54,14 @@ class ProfileForm extends FormLayout{
 
     private Image profilePicture = new Image();
 
-    // void profilePictureUpload(){
-    //     UploadHandler memo =  UploadHandler.
+     void profilePictureUpload(){
+         MemoryBuffer buffer = new MemoryBuffer();
+
+         UploadHandler upload = UploadHandler.toTempFile((uploadMetadata, file)-> )
+
             
         
-    // }
+     }
 
     
 }
