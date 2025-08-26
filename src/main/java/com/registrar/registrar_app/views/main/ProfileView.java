@@ -39,29 +39,3 @@ public class ProfileView extends VerticalLayout {
 
     }
 }
-
-class ProfileForm extends FormLayout{
-
-    TextField name = new TextField("Name");
-    TextField lastName = new TextField("Last name");
-    EmailField email = new EmailField("Email");
-    NumberField number = new NumberField("Phone Number");
-    ComboBox <Status> status = new ComboBox<>();
-    TextArea description = new TextArea("About me");
-
-
-    Button save = new Button("Save");
-
-    private Image profilePicture = new Image();
-
-     void profilePictureUpload(){
-         MemoryBuffer buffer = new MemoryBuffer();
-
-         UploadHandler upload = UploadHandler.toTempFile((uploadMetadata, file)-> )
-
-            
-        
-     }
-
-    
-}

@@ -10,6 +10,7 @@ import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
 
@@ -22,7 +23,6 @@ import com.vaadin.flow.component.popover.PopoverPosition;
 import com.vaadin.flow.component.popover.PopoverVariant;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
-import com.vaadin.flow.dom.Style.AlignItems;
 import com.vaadin.flow.router.RouterLink;
 
 public class MainLayout extends AppLayout {
@@ -60,23 +60,26 @@ public class MainLayout extends AppLayout {
     }
 
 
-    private void createHeaders(){
-        RouterLink homeLink = new RouterLink("Home", HomeView.class);
-        RouterLink recordsLink = new RouterLink("Records", RecordView.class);
-        RouterLink profileLink = new RouterLink("Profile", ProfileView.class);
+    // private void createHeaders(){
+    //     RouterLink homeLink = new RouterLink("Home", HomeView.class);
+    //     RouterLink recordsLink = new RouterLink("Records", RecordView.class);
+    //     RouterLink profileLink = new RouterLink("Profile", ProfileView.class);
 
-        addToDrawer(new VerticalLayout(
-            homeLink,
-            recordsLink,
-            profileLink
-        ));
+    //     addToDrawer(new VerticalLayout(
+    //         homeLink,
+    //         recordsLink,
+    //         profileLink
+    //     ));
 
 
-    }
+    // }
 
     private Component createIconAvatarLink(){
+
+        HorizontalLayout allComp = new HorizontalLayout();
+
         String name = "Owner";
-        String pictureUrl = "/resources/static/images/avatar-generations_rpge.jpg";
+        String pictureUrl = "static/images/avatar-generations_rpge.jpg";
 
         Avatar avatar = new Avatar(name);
         avatar.setImage(pictureUrl);
@@ -98,7 +101,42 @@ public class MainLayout extends AppLayout {
         popover.setPosition(PopoverPosition.BOTTOM);
         popover.addThemeVariants(PopoverVariant.LUMO_NO_PADDING);
 
-        return avatar;
+        
+
+        HorizontalLayout userInfo  = new HorizontalLayout();
+        userInfo.addClassName("userMenu");
+        userInfo.setSpacing(true);
+
+        VerticalLayout nameLayout = new VerticalLayout();
+        nameLayout.setSpacing(false);
+        nameLayout.setPadding(true);
+
+        nameLayout.add(name);
+
+        VerticalLayout linksLayout = new VerticalLayout();
+        linksLayout.setSpacing(false);
+        linksLayout.setPadding(false);
+        linksLayout.addClassName("linksMenu");
+
+        Anchor profile = new Anchor("#", "User Profile");
+        profile.getElement().setAttribute("role", "menuitem");
+
+        Anchor logOut = new Anchor("#", "Log out");
+
+        linksLayout.add(profile, logOut);
+
+
+
+        // userInfo.add(avatar, nameLayout);
+
+        // popover.add(userInfo);
+
+       
+
+        // allComp.add(button, popover);
+
+    
+        return button;
 
     }
 
